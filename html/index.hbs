@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	
+
+	
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	
+	<!-- Doesnt work :( -->
+	<!-- <link src="https://bootswatch.com/4/sketchy/bootstrap.min.css" rel="stylesheet"/> -->
+	<title>This is a title</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<div class="text-center">
+				<img src="/burgers_images.jpeg" alt="An image of a delicious burger" class="center-block" style="width:100%;"/>
+				<hr/>
+				<h1>Burger eater</h1>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-6">
+				<h3>Burgers you have to eat</h3>
+					<ul>
+						{{#each toEat}}
+							<li>
+								<h4>{{this.name}}</h4>
+								<button id="{{this.id}}" type="button" class="btn-primary" onclick="eatThisBurger(this)"><h6>EAT ME!</h6></button>
+							</li>
+						{{/each}}
+					</ul>
+			</div>
+			<div class="col-md-6">
+				<h3>Burgers that you have eaten</h3>
+					<ul>
+						{{#each haveEaten}}
+							<li>
+								<h4 id="{{this.id}}">{{this.name}}</h4>
+							</li>
+						{{/each}}
+					</ul>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-6">
+				<textarea id="burgerToAdd" rows="4" cols="35">
+				</textarea>
+				<br/>
+				<button type="button" class="btn-primary" onclick="addThisBurger()"><h4>Add this burger</h4></button>
+			</div>
+		</div>
+		
+	</div>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+	<script type="application/javascript">
+		function eatThisBurger(b){
+			var obj = {};
+			obj.id = b.id;
+			console.log(obj);
+			$.post("/api/loschen", JSON.stringify(obj) ).then(function(data) {
+				location.reload();
+			});
+		}
+		
+		function addThisBurger(){
+			var obj = {};
+			obj.name = document.getElementById("burgerToAdd").value;
+			console.log(obj);
+			$.post("/api/hinzufuugen", JSON.stringify(obj) ).then(function(data) {
+				location.reload();
+			}).catch(function(){
+				location.reload();
+			});
+		}
+	</script>
+	
+</body>
+
+</html>
