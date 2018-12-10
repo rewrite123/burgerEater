@@ -6,7 +6,7 @@ It has to do with the fact that my isp is a public wifi provider, which means th
 I provided the neccessary sql files for you, and server.js has plenty of documentation on how the server part works. Most of it is automated anyway.
 To run this program, run
 
-"node main.js <ThePasswordForYourDB>"
+"node main.js &lt;ThePasswordForYourDB>"
   
 That will start the server, and from there you can access it from /index.
   
