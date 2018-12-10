@@ -7,6 +7,7 @@ I provided the neccessary sql files for you, and server.js has plenty of documen
 To run this program, run
 
 "node main.js <ThePasswordForYourDB>"
+  
 That will start the server, and from there you can access it from /index.
   
 Please excuse the lateness, I have had a lot of problems regarding the sql shit.
